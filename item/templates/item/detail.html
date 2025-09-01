@@ -1,0 +1,48 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-3 gap-6 font-bold text-xl bg-white">
+    <div class="col-span">
+        <img src="{{ item.image.url }}" class="rounded-full">
+    </div>
+
+    <div class="col-span-2 p-6 bg-gray-800 hover:text-white rounded-xl">
+        <h1 class="mb-6 text-3-xl">{{ item.name }}</h1>
+        <p class="text-white"><strong><i>Price: </strong> {{ item.price }} </i></p>
+        <p class="text-white"><strong><i>Seller: </strong> {{ item.created_by.username }}</i></p>
+
+        {% if item.decription %}
+            <p class="text-white">
+            <strong class="text-white">Description:</strong><br>
+            {{ item.description }}
+            </p>
+        {% endif %}
+
+        <a href="#" class="inline- block mt6 px-6 py-3 text-lg font-semibold bg-teal-300 text-white rounded-full hover:bg-teal-700"> Contact Seller</a>    
+    </div>
+</div>
+
+<div class="mt-7 px-6 py-14 bg-gray-800  rounded-xl">
+    <h2 class="mb-14 text-3xl text-center hover:text-white">Related Dishes</h2>
+
+    <div class="grid grid-cols-3 gap-10">
+        {% for item in related_items %}
+            <div>
+                <a href="{% url 'item:detail' item.id %}">
+                    <div>
+                        <img src="{{ item.image.url }}" class="rounded-t-xl"
+                        >
+                    </div>
+
+                    <div class="p-6 bg-gray-500 hover:text-white font-bold rounded-b-xl">
+                        <h2 class="text-3xl">{{ item.name }}</h2>
+                        <p class="text-white">Price: {{ item.price }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
