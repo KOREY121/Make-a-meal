@@ -3,23 +3,23 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<div class="bg-gray-800">
-<div class="w-1/4 my-6 p-6 mx-auto font-bold bg-gray-400 rounded-xl">
-    <h1 class="mb-6 text-2xl">Log in</h1>
+<div class="flex justify-center items-center my-10">
+<div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+    <h1 class="mb-6 text-2xl font-semibold text-gray-800">Log in</h1>
 
-    <form method="post" action=".">
+    <form method="post" action="." class="space-y-5">
         {% csrf_token %}
 
-        <div class="mb-3">
-            <label class="inline-block mb-2">Username</label><br>
+        <div>
+            <label class="block mb-2 text-gray-700 font-medium">Username</label><br>
             {{ form.username }}
         </div>
-        <div class="mb-3">
-            <label class="inline-block mb-2">Password</label><br>
+        <div>
+            <label class="block mb-2 text-gray-700 font-medium">Password</label><br>
             {{ form.password }}
         </div>
         {% if form.errors or form.none_field_errors%}
-            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+            <div class="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg shadow-sm">
                 {% for field in form %}
                     {{ field.errors }}
                 {% endfor %}
@@ -28,7 +28,7 @@
             </div>
         {% endif %}
 
-        <button class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-full font-bold text-white">Submit</button>
+        <button class="w-full py-3 px-6 text-lg bg-teal-500 hover:bg-teal-600 rounded-lg font-medium text-white transition">Submit</button>
     </form>
 </div>
 {% endblock %}

@@ -27,6 +27,34 @@ class SignUpForm(UserCreationForm):
         'placeholder': 'Your Email',
         'class': 'w-full py-4 px-6 rounded-full',
     }))
+    address= forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Your address',
+        'class': 'w-full py-4 px-6 rounded-full',
+    }))
+    location= forms.ChoiceField(choices=[
+            ('', 'Select your country'),
+            ('NG', 'Nigeria'),
+            ('US', 'United States'),
+            ('UK', 'United Kingdom'),
+            ('CA', 'Canada'),
+            ('GH', 'Ghana'),
+            ('KE', 'Kenya'),
+        ],
+        widget=forms.Select(attrs={
+        'placeholder': 'Your address',
+        'class': 'w-full py-4 px-6 rounded-full',
+    }))
+    gender = forms.ChoiceField(
+        choices=[
+            ('', 'Select gender'),
+            ('M', 'Male'),
+            ('F', 'Female'),
+            ('O', 'Other'),
+        ],
+        widget=forms.Select(attrs={
+            'class': 'w-full py-4 px-6 rounded-full'
+        })
+    )
     password1= forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder': 'Your Password',
         'class': 'w-full py-4 px-6 rounded-full',
