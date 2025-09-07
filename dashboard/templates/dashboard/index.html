@@ -4,21 +4,21 @@
 
 {% block content %}
 
-<div class="mt-7 px-6 py-14 bg-gray-800  rounded-xl">
-    <h2 class="mb-14 text-3xl text-center hover:text-white">Our Dishes</h2>
+<div class="mt-7 px-6 py-14 bg-gray-100 rounded-lg shadow-md">
+    <h2 class="mb-10 text-2xl text-center text-gray-700">Our Dishes</h2>
 
-    <div class="grid grid-cols-3 gap-10">
+    <div class="grid grid-cols-3 gap-8">
         {% for item in items %}
-            <div>
+            <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
                 <a href="{% url 'item:detail' item.id %}">
                     <div>
-                        <img src="{{ item.image.url }}" class="rounded-t-xl"
+                        <img src="{{ item.image.url }}" class="w-full h-48 object-cover"
                         >
                     </div>
 
-                    <div class="p-6 bg-gray-500 hover:text-white font-bold rounded-b-xl">
-                        <h2 class="text-3xl">{{ item.name }}</h2>
-                        <p class="text-white">Price: {{ item.price }}</p>
+                    <div class="p-4 bg-white">
+                        <h2 class="text-xl font-semibold text-gray-800">{{ item.name }}</h2>
+                        <p class="text-gray-600 mt-1">Price: {{ item.price }}</p>
                     </div>
                 </a>
             </div>

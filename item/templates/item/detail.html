@@ -3,51 +3,51 @@
 {% block title %}{{ item.name }}{% endblock %}
 
 {% block content %}
-<div class="grid grid-cols-3 gap-6 font-bold text-xl bg-white">
-    <div class="col-span">
-        <img src="{{ item.image.url }}" class="rounded-full">
+<div class="grid grid-cols-3 gap-6 text-lg bg-white">
+    <div class="col-span-1">
+        <img src="{{ item.image.url }}" class="rounded-lg shadow-md object-cover w-full h-auto">
     </div>
 
-    <div class="col-span-2 p-6 bg-gray-800 hover:text-white rounded-xl">
-        <h1 class="mb-6 text-3-xl">{{ item.name }}</h1>
-        <p class="text-white"><strong><i>Price: </strong> {{ item.price }} </i></p>
-        <p class="text-white"><strong><i>Seller: </strong> {{ item.created_by.username }}</i></p>
+    <div class="col-span-2 p-6 bg-gray-50 rounded-lg shadow-xl">
+        <h1 class="mb-4 text-2xl font-semi-bold text-gray-800">{{ item.name }}</h1>
+        <p class="text-gray-700"><strong><i>Price: </strong> {{ item.price }} </i></p>
+        <p class="text-gray-700"><strong><i>Seller: </strong> {{ item.created_by.username }}</i></p>
 
         {% if item.decription %}
-            <p class="text-white">
-            <strong class="text-white">Description:</strong><br>
-            {{ item.description }}
-            </p>
+            <div class="mt-4">
+                <strong class="text-lg font-semibold text-gray-800">Description:</strong><br>
+                <p class="text-gray-600 mt-1">{{ item.description }}</p>
+            </div>
         {% endif %}
 
         {% if request.user == item.created_by %}
-            <div class="mt-6 p-6 bg-black text-white rounded-xl">
-                <p>This is your dish</p>
-                <a href="{% url 'item:edit' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-bold bg-teal-500 text-white rounded-full">Edit</a>
-                <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-bold bg-red-500 text-white rounded-full">Delete</a>
+            <div class="mt-6 p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                <p class="text-gray-700 mb-4">This is your dish</p>
+                <a href="{% url 'item:edit' item.id %}" class="inline-block mt-2 px-5 py-2 text-sm font-medium bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition">Edit</a>
+                <a href="{% url 'item:delete' item.id %}" class="inline-block mt-2 ml-2 px-5 py-2 text-sm font-medium bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Delete</a>
             </div>
         {% else %}
 
-        <a href="#" class="inline- block mt6 px-6 py-3 text-lg font-semibold bg-teal-300 text-white rounded-full hover:bg-teal-700"> Contact Seller</a>    
+        <a href="{% url 'conversation:new' item.id %}" class="inline- block mt-6 px-5 py-2 text-sm font-medium bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition"> Contact Seller</a>    
         {% endif %}
     </div>
 </div>
 
-<div class="mt-7 px-6 py-14 bg-gray-800  rounded-xl">
-    <h2 class="mb-14 text-3xl text-center hover:text-white">Related Dishes</h2>
+<div class="mt-10 px-6 py-10 bg-gray-50 rounded-lg shadow-sm">
+    <h2 class="mb-8 text-2xl text-center font-semibold text-gray-800">Related Dishes</h2>
 
-    <div class="grid grid-cols-3 gap-10">
+    <div class="grid grid-cols-3 gap-8 ">
         {% for item in related_items %}
-            <div>
+            <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-form duration-300 ease-in">
                 <a href="{% url 'item:detail' item.id %}">
                     <div>
-                        <img src="{{ item.image.url }}" class="rounded-t-xl"
-                        >
+                        <img src="{{ item.image.url }}" class="w-full h-40 object-cover">
+                        
                     </div>
 
-                    <div class="p-6 bg-gray-500 hover:text-white font-bold rounded-b-xl">
-                        <h2 class="text-3xl">{{ item.name }}</h2>
-                        <p class="text-white">Price: {{ item.price }}</p>
+                    <div class="p-4 bg-white ">
+                        <h2 class="text-lg font-semibold text-gray-800">{{ item.name }}</h2>
+                        <p class="text-gray-600 mt-1">Price: {{ item.price }}</p>
                     </div>
                 </a>
             </div>
